@@ -1,0 +1,126 @@
+<html lang="en">
+    <head>
+        <title>Add Invoice</title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Custom styles for this template -->
+        <link href="style.css" rel="stylesheet">
+
+        <script type="text/javascript" src="bower_components/ladda/spin.min.js"></script>
+        <script type="text/javascript" src="bower_components/ladda/ladda.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="bower_components/ladda/ladda-themeless.min.css">
+
+    </head>
+
+    <body ng-controller="AddInvoiceCtrl">
+        <div class="blog-masthead">
+            <div class="container">
+                <nav class="blog-nav">
+                    <a class="blog-nav-item " href="#/welcome">Home</a>
+                    <a class="blog-nav-item active" href="#/addInvoice">Add Invoice</a>
+                    <a class="blog-nav-item " style="cursor:pointer;" ng-click="logout();">Logout</a>
+                </nav>
+            </div>
+        </div>
+
+        <div class="container" >
+            <br>
+            <form>
+                <fieldset>
+                    <legend>Create Invoice</legend>
+                    <div class="form-group">
+                        <label class="control-label" for="txtTitle">Customer Name</label>  
+                        <div class="">
+                            <input name="txtTitle" ng-model="invoice.customer.name" type="text" class="form-control input-md">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="txtTitle">Customer Contact</label>  
+                        <div class="">
+                            <input  name="txtTitle" ng-model="invoice.customer.contact" type="text"  class="form-control input-md">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label" for="txtTitle">Car Model</label>  
+                        <div class="">
+                            <input  name="txtTitle" ng-model="invoice.car_model" type="text"  class="form-control input-md">
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>Services</label>
+                        <div class="table table-responsive">
+                            <table class="table"> 
+
+                                <thead> 
+                                    <tr> 
+                                        <th>Name</th> 
+                                        <th>Amount</th> 
+                                        <th></th> 
+                                    </tr> 
+                                </thead> 
+                                <tbody> 
+                                    <tr>
+                                        <th>
+                                            <input  name="txtTitle" ng-model="invoice.service.name" type="text"  class="form-control input-md" placeholder="Service Name">
+                                        </th> 
+                                        <th>
+                                            <input  name="txtTitle" ng-model="invoice.service.amount" type="number" placeholder="Amount" class="form-control input-md">
+                                        </th> 
+                                        <th>
+                                            <button class="btn" ng-click="addService()">Add</button>
+                                        </th>
+                                    </tr> 
+                                    <tr ng-repeat="value in invoice.services">
+                                        <th>{{value.name}}</th> 
+                                        <th>{{value.amount}}</th> 
+                                        <th><button class="btn btn-link btn-sm" ng-click="deleteService(value)">Delete</button></th>
+                                    </tr> 
+                                    <tr>
+
+                                        <th class="text-right"><strong>Total Amount</strong></th>
+                                        <th>{{getTotal()}}</th>  
+                                        <th></th>
+
+                                    </tr>
+                                </tbody> 
+                            </table>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label" for="txtInvoice">Note</label>
+                        <div class="">                     
+                            <textarea class="form-control" id="txtInvoice" ng-model="invoice.note" name="txtInvoice" ></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Button -->
+                    <div class="form-group">
+                        <label class="control-label" for="singlebutton"></label>
+                        <div class="">
+
+
+
+                            <button ladda-loading="login.loading" data-style="expand-right" ng-disabled="!invoice.customer.name || !invoice.car_model" name="singlebutton" class="btn btn-info btn-lg segoe-ui-light ladda-button" type="button"  ng-click="AddInvoice()"><span class="ladda-label">Create Invoice</span></button>
+
+                        </div>
+                    </div>
+
+                </fieldset>
+            </form>
+
+
+        </div><!-- /.container -->
+        <br>
+        <div class="blog-footer">
+            <p>Invoice App</p>
+        </div>
+    </body>
+</html>
+
