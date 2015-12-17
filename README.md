@@ -1,2 +1,2 @@
-# invoice
-Invoice - AngularFire app for invoice generation
+# Invoice
+AngularFire app for invoice generation
